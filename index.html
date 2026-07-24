@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBA4 Task Management App</title>
+</head>
+<body>
+    <h1>Task Management</h1>
+    <form action="">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" name="taskName" placeholder="Name of Task">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" placeholder="Category Type">
+        <label for="deadline">Deadline:</label>
+        <input type="text" id="deadline" name="deadline" placeholder="When is Deadline">
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+        <option value="To Do">To Do</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Expired">Expired</option>
+    </select>
+    </form>
+    <button id="addTask">Add Task</button>
+
+    <ul id="taskList"></ul>
+</body>
+</html>
