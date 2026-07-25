@@ -16,7 +16,7 @@ taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const taskName = document.getElementById("taskName").value;
-  const category = document.getElementById("category").vallue;
+  const category = document.getElementById("category").value;
   const deadline = document.getElementById("deadline").value;
   const status = document.getElementById("status").value;
   //note to self: adding .value gets what's being typed inside specific field
@@ -45,7 +45,7 @@ function renderlist() {
 
   for (let i = 0; i < taskList.length; i++) {
     let taskItem = document.createElement("li");
-    taskItem.innerHTML = taskList[i];
+    taskItem.innerHTML = `${taskList[i].name} - ${taskList[i].category} - ${taskList[i].deadline}  (${taskList[i].status})`;
     taskAdded.appendChild(taskItem);
   }
 }
