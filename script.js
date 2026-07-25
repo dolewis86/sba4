@@ -46,5 +46,6 @@ function renderlist() {
   for (let i = 0; i < taskList.length; i++) {
     let taskItem = document.createElement("li");
     taskItem.innerHTML = taskList[i];
+    taskAdded.appendChild(taskItem);
   }
 }
