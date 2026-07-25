@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Task Management</h1>
-    <form action="">
+    <form id="taskForm">
       <label for="taskName">Task Name:</label>
       <input
         type="text"
@@ -36,9 +36,9 @@
         <option value="Completed">Completed</option>
         <option value="Expired">Expired</option>
       </select>
-    </form>
-    <button id="addTask">Add Task</button>
-
+      <button type="submit" id="addTask">Add Task</button>
+</form>
+    
     <ul id="taskList"></ul>
   </body>
 </html>
