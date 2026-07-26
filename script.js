@@ -24,8 +24,8 @@ taskForm.addEventListener("submit", (event) => {
   //i believe this next part works because it is only being triggerd when user presses input
 
   const userTasks = {
-    name: taskName.trim(),
-    category: category.trim(),
+    name: taskName.trim().toUpperCase(),
+    category: category.trim().toUpperCase(),
     deadline: deadline,
     status: status.trim(),
   };
@@ -75,7 +75,7 @@ function filterTasks(selectedCategory, selectedStatus) {
   const filteredList = taskList.filter(function (task) {
     //This checks if category matches (or if filter is set to all)
     const categoryMatch =
-      selectedCategory === "All" || task.category === selectedCategory;
+      selectedCategory === "" || task.category === selectedCategory;
     // this will check if status matches (or if filter is set to all)
     const statusMatch =
       selectedStatus === "All" || task.status === selectedStatus;
@@ -94,8 +94,14 @@ const clearFiltersBtn = document.getElementById("clearFiltersBtn");
 
 // Listens for the user clicking the new Apply Filters Btn
 applyFiltersBtn.addEventListener("click", () => {
-  const categoryValue = filterCategoryInput.value.trim();
+  const categoryValue = filterCategoryInput.value.trim().toUpperCase();
   const statusValue = filterStatusSelect.value;
 
   filterTasks(categoryValue, statusValue);
+});
+
+clearFiltersBtn.addEventListener("click", () => {
+  filterCategoryInput.value = "";
+  filterStatusSelect.value = "All";
+  renderlist();
 });
