@@ -40,16 +40,17 @@ taskForm.addEventListener("submit", (event) => {
   renderlist();
 });
 
-function renderlist() {
+function renderlist(listToRender = taskList) {
   taskAdded.innerHTML = "";
   const today = new Date().toISOString().split("T")[0];
-  for (let i = 0; i < taskList.length; i++) {
+  for (let i = 0; i < listToRender.length; i++) {
     let taskItem = document.createElement("li");
 
-    let { name, category, deadline, status } = taskList[i];
+    let { name, category, deadline, status } = listToRender[i];
+    const originalIndex = taskList.indexOf(listToRender[i]);
     if (deadline && deadline < today && status !== "Completed") {
       status = "Overdue";
-      taskList[i].status = "Overdue";
+      listToRender[i].status = "Overdue";
     }
 
     //Display date cleaer for users
@@ -57,7 +58,7 @@ function renderlist() {
       ? new Date(deadline).toDateString()
       : "No Deadline";
 
-    taskItem.innerHTML = `<strong>Name:</strong> ${taskList[i].name} - <strong>Category:</strong>${taskList[i].category} - <strong>Deadline:</strong> ${taskList[i].deadline} <strong>Status:</strong> <select class="status" data-index="${i}">
+    taskItem.innerHTML = `<strong>Name:</strong> ${name} - <strong>Category:</strong>${category} - <strong>Deadline:</strong> ${displayDate} <strong>Status:</strong> <select class="status" data-index="${originalIndex}">
     <option value="To Do" ${status === "To Do" ? "selected" : ""}>To Do</option>
         <option value="In Progress" ${status === "In Progress" ? "selected" : ""}>In Progress</option>
         <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
@@ -67,4 +68,20 @@ function renderlist() {
     `;
     taskAdded.appendChild(taskItem);
   }
+}
+
+// Filter
+function filterTasks(selectedCategory, selectedStatus) {
+  const filteredList = taskList.filter(function (task) {
+    //This checks if category matches (or if filter is set to all)
+    const categoryMatch =
+      selectedCategory === "All" || task.category === selectedCategory;
+    // this will check if status matches (or if filter is set to all)
+    const statusMatch =
+      selectedStatus === "All" || task.status === selectedStatus;
+
+    return categoryMatch && statusMatch;
+  });
+
+  renderlist(filteredList);
 }
