@@ -26,7 +26,7 @@ taskForm.addEventListener("submit", (event) => {
   const userTasks = {
     name: taskName.trim(),
     category: category.trim(),
-    deadline: deadline.trim(),
+    deadline: deadline,
     status: status.trim(),
   };
 
@@ -42,14 +42,26 @@ taskForm.addEventListener("submit", (event) => {
 
 function renderlist() {
   taskAdded.innerHTML = "";
-
+  const today = new Date().toISOString().split("T")[0];
   for (let i = 0; i < taskList.length; i++) {
     let taskItem = document.createElement("li");
-    taskItem.innerHTML = `Name: ${taskList[i].name} - Category: ${taskList[i].category} - Deadline: ${taskList[i].deadline} Status: <select class="status" data-index="${i}">
+
+    let { name, category, deadline, status } = taskList[i];
+    if (deadline && deadline < today && status !== "Completed") {
+      status = "Overdue";
+      taskList[i].status = "Overdue";
+    }
+
+    //Display date cleaer for users
+    const displayDate = deadline
+      ? new Date(deadline).toDateString()
+      : "No Deadline";
+
+    taskItem.innerHTML = `<strong>Name:</strong> ${taskList[i].name} - <strong>Category:</strong>${taskList[i].category} - <strong>Deadline:</strong> ${taskList[i].deadline} <strong>Status:</strong> <select class="status" data-index="${i}">
     <option value="To Do" ${status === "To Do" ? "selected" : ""}>To Do</option>
         <option value="In Progress" ${status === "In Progress" ? "selected" : ""}>In Progress</option>
         <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
-        <option value="Expired" ${status === "Expired" ? "selected" : ""}>Expired</option>
+        <option value="Overdue" ${status === "Overdue" ? "selected" : ""}>Overdue</option>
       </select>
     
     `;
