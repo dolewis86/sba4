@@ -39,7 +39,29 @@
       </select>
       <button type="submit" id="addTask">Add Task</button>
     </form>
-
+    //Filter Tasks bullet two and three
+    
+    <div id="filterSection">
+      <h3>Filter Tasks</h3>
+      <label for="filterCategory">Category:</label>
+      <input
+        type="text"
+        id="filterCategory"
+        name="filterCategory"
+        placeholder="Type a category to filter (or leave blank)"
+      />
+       <label for="filterStatus">Status:</label>
+      <select id="filterStatus" name="filterStatus">
+        <option value="All">All Statuses</option>
+        <option value="To Do">To Do</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Overdue">Overdue</option>
+      </select>
+      <button type="button" id="applyFiltersBtn">Apply Filters</button>
+      <button type="button" id="clearFiltersBtn">Clear Filters</button>
+      
+    </div>
     <ul id="taskAdded"></ul>
   </body>
 </html>

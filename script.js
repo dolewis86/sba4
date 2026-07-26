@@ -85,3 +85,17 @@ function filterTasks(selectedCategory, selectedStatus) {
 
   renderlist(filteredList);
 }
+
+// now that i've addded filters html connecting in JS
+const filterCategoryInput = document.getElementById("filterCategory");
+const filterStatusSelect = document.getElementById("filterStatus");
+const applyFiltersBtn = document.getElementById("applyFiltersBtn");
+const clearFiltersBtn = document.getElementById("clearFiltersBtn");
+
+// Listens for the user clicking the new Apply Filters Btn
+applyFiltersBtn.addEventListener("click", () => {
+  const categoryValue = filterCategoryInput.value.trim();
+  const statusValue = filterStatusSelect.value;
+
+  filterTasks(categoryValue, statusValue);
+});
