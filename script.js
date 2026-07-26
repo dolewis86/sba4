@@ -46,10 +46,10 @@ function renderlist() {
   for (let i = 0; i < taskList.length; i++) {
     let taskItem = document.createElement("li");
     taskItem.innerHTML = `Name: ${taskList[i].name} - Category: ${taskList[i].category} - Deadline: ${taskList[i].deadline} Status: <select class="status" data-index="${i}">
-    <option value="To Do" ${status === 'To Do' ? 'selected' : ''}>To Do</option>
-        <option value="In Progress" ${status === 'In Progress' ? 'selected' : ''}>In Progress</option>
-        <option value="Completed" ${status === 'Completed' ? 'selected' : ''}>Completed</option>
-        <option value="Expired" ${status === 'Expired' ? 'selected' : ''}>Expired</option>
+    <option value="To Do" ${status === "To Do" ? "selected" : ""}>To Do</option>
+        <option value="In Progress" ${status === "In Progress" ? "selected" : ""}>In Progress</option>
+        <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
+        <option value="Expired" ${status === "Expired" ? "selected" : ""}>Expired</option>
       </select>
     
     `;
